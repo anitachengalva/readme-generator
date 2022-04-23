@@ -1,5 +1,8 @@
 const inquirer = require("inquirer");
+const inquirerFileTreeSelection = require('inquirer-file-tree-selection-prompt')
 const fs = require("fs");
+
+inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
 const generateMarkdown = require("utils\generateMarkdown")
 const questions = []
@@ -36,6 +39,16 @@ inquirer
           name: "CSS",
         },
       ],
+    },
+    {
+        type: "input",
+        name: "fileInstruc",
+        message: "Please provide a description of how to use your project: ",
+    },
+    {
+        type: "input",
+        name: "fileImage",
+        message: "Please provide screenshots of your project: ",
     },
     {
       type: "list",
