@@ -6,8 +6,7 @@ inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
 // utilized markdown syntax
 const generateREADME = (data) =>
-        `## PROJECT TITLE
-        ${data.fileName}
+        `#${data.fileName}
         
         ## DESCRIPTION 
         ${data.fileDescr}
@@ -17,7 +16,7 @@ const generateREADME = (data) =>
         This program has been developed using ${data.lang}.
 
         ## SCREENSHOTS
-        ${data.projImg}
+        ![screenshot](${data.projImg})
 
         ## HOW TO USE
         ${data.fileInstruc}
