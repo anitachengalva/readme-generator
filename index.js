@@ -4,6 +4,7 @@ const fs = require("fs");
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
+// utilized markdown syntax
 const generateREADME = (data) =>
         `## PROJECT TITLE
         ${data.fileName}
@@ -24,9 +25,9 @@ const generateREADME = (data) =>
         ## LICENCE
         This project is licensed under the terms of the ${data.projLicense} license.`
 
-// const generateMarkdown = require("utils/generateMarkdown")
-// const questions = []
 
+// these user input questions will be used to build the README
+// questions are answered in terminal with the use of inquirer
 inquirer
   .prompt([
     {
@@ -66,18 +67,14 @@ inquirer
         message: "Please provide a description of how to use your project: ",
     },
     {
-        type: "input",
-        name: "fileImage",
-        message: "Please provide screenshots of your project: ",
-    },
-    {
         type: 'file-tree-selection',
-        name: 'projImg'
+        name: 'projImg',
+        message: "Please select the screenshots of your project: ",
     },
     {
       type: "list",
-      message: "Choose a license",
       name: "projLicense",
+      message: "Choose a license",
       choices: ["MIT", "Apache", "GNU GPL"],
     },
   ])
@@ -88,39 +85,3 @@ inquirer
         err ? console.log(err) : console.log("File Sucessfully Written")
     );
   });
-
-
-//   .then(function (data) {
-//     console.log(data);
-//     // utilized markdown syntax
-//     const story = 
-//         `## PROJECT TITLE
-//         ${data.fileName}
-        
-//         ## DESCRIPTION 
-//         ${data.fileDescr}
-
-//         ${data.userStory}
-
-//         This program has been developed using ${data.lang}.
-
-//         ## SCREENSHOTS
-//         ${data.projImg}
-
-//         ## HOW TO USE
-//         ${data.fileInstruc}
-
-//         ## LICENCE
-//         This project is licensed under the terms of the ${data.projLicense} license.`
-//     });
-    
-// // creates a file in the generatedREADMEs folder, content is created with user input from the above questions in the user story
-//     fs.writeFile("generatedREADMEs/README.md", story, (err) => {
-//         if (err)
-//             console.log (err);
-//         else {
-//             console.log("File Sucessfully Written");
-//             console.log("The written has the following contents: ");
-//             console.log(fs.readFileSync(generatedREADMEs/README.md));
-//         }
-//     })
