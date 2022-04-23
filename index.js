@@ -4,6 +4,26 @@ const fs = require("fs");
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
+const generateREADME = (data) =>
+        `## PROJECT TITLE
+        ${data.fileName}
+        
+        ## DESCRIPTION 
+        ${data.fileDescr}
+
+        ${data.userStory}
+
+        This program has been developed using ${data.lang}.
+
+        ## SCREENSHOTS
+        ${data.projImg}
+
+        ## HOW TO USE
+        ${data.fileInstruc}
+
+        ## LICENCE
+        This project is licensed under the terms of the ${data.projLicense} license.`
+
 // const generateMarkdown = require("utils/generateMarkdown")
 // const questions = []
 
@@ -61,6 +81,8 @@ inquirer
       choices: ["MIT", "Apache", "GNU GPL"],
     },
   ])
+  .then((response) => console.log(response));
+
 
 //   .then(function (data) {
 //     console.log(data);
