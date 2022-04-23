@@ -81,7 +81,13 @@ inquirer
       choices: ["MIT", "Apache", "GNU GPL"],
     },
   ])
-  .then((response) => console.log(response));
+  .then((answers) => {
+      const READMEcontent = generateREADME(answers);
+
+    fs.writeFile("README.md", READMEcontent, (err) =>
+        err ? console.log(err) : console.log("File Sucessfully Written")
+    );
+  });
 
 
 //   .then(function (data) {
@@ -117,4 +123,4 @@ inquirer
 //             console.log("The written has the following contents: ");
 //             console.log(fs.readFileSync(generatedREADMEs/README.md));
 //         }
-//     });
+//     })
