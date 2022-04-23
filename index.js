@@ -4,8 +4,8 @@ const fs = require("fs");
 
 inquirer.registerPrompt('file-tree-selection', inquirerFileTreeSelection)
 
-const generateMarkdown = require("utils\generateMarkdown")
-const questions = []
+// const generateMarkdown = require("utils/generateMarkdown")
+// const questions = []
 
 inquirer
   .prompt([
@@ -26,7 +26,7 @@ inquirer
     },
     {
       type: "checkbox",
-      name: "languages",
+      name: "lang",
       message: "What languages were utilized?",
       choices: [
         {
@@ -51,24 +51,48 @@ inquirer
         message: "Please provide screenshots of your project: ",
     },
     {
+        type: 'file-tree-selection',
+        name: 'projImg'
+    },
+    {
       type: "list",
-      message: "What is your preferred form of communication?",
-      name: "commType",
-      choices: ["Email", "SMS", "Voice Call"],
+      message: "Choose a license",
+      name: "projLicense",
+      choices: ["MIT", "Apache", "GNU GPL"],
     },
   ])
-  .then(function (data) {
-    console.log(data);
 
-    const story = `Hi my name is ${data.username}. I like ${data.languages.join(
-      ","
-    )}. I like to be contacted by ${data.commType}`;
+//   .then(function (data) {
+//     console.log(data);
+//     // utilized markdown syntax
+//     const story = 
+//         `## PROJECT TITLE
+//         ${data.fileName}
+        
+//         ## DESCRIPTION 
+//         ${data.fileDescr}
 
-    fs.writeFile(
-      `${data.username.split(" ").join("")}-user-preferences.json`,
-      story,
-      function (err) {
-        err ? console.error(err) : console.log("Success!");
-      }
-    );
-  });
+//         ${data.userStory}
+
+//         This program has been developed using ${data.lang}.
+
+//         ## SCREENSHOTS
+//         ${data.projImg}
+
+//         ## HOW TO USE
+//         ${data.fileInstruc}
+
+//         ## LICENCE
+//         This project is licensed under the terms of the ${data.projLicense} license.`
+//     });
+    
+// // creates a file in the generatedREADMEs folder, content is created with user input from the above questions in the user story
+//     fs.writeFile("generatedREADMEs/README.md", story, (err) => {
+//         if (err)
+//             console.log (err);
+//         else {
+//             console.log("File Sucessfully Written");
+//             console.log("The written has the following contents: ");
+//             console.log(fs.readFileSync(generatedREADMEs/README.md));
+//         }
+//     });
