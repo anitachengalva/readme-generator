@@ -1,18 +1,30 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+
 const generateMarkdown = require("utils\generateMarkdown")
+const questions = []
 
 inquirer
   .prompt([
     {
       type: "input",
-      name: "username",
-      message: "What's your name?",
+      name: "fileName",
+      message: "What is the name of your project? ",
+    },
+    {
+        type: "input",
+        name: "fileDescr",
+        message: "Please provide a short description of your project: ",
+    },
+    {
+        type: "input",
+        name: "userStory",
+        message: "Please provide a User Story for your project: ",
     },
     {
       type: "checkbox",
       name: "languages",
-      message: "What languages do you know?",
+      message: "What languages were utilized?",
       choices: [
         {
           name: "HTML",
